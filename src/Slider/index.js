@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import useMeasure from "react-use-measure";
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 import {useSpring, animated} from "react-spring";
 import {useDrag} from "react-use-gesture";
 import clamp from 'lodash.clamp'
@@ -58,6 +58,12 @@ const Slider = () => {
             })
         }
     })
+
+    useEffect(() => {
+        api.start({
+            x: index.current * - width
+        })
+    }, [api, width])
 
     return <Wrapper>
         <Container ref={ref}>
